@@ -8,26 +8,40 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
 
 
+const chatHistory = [
+
+]
+
+
 io.on("connection", (socket) => {
     console.log("A user is connected");
-    
-    socket.on("disconnect", ()=>{
+
+    socket.on("disconnect", () => {
         console.log("A user is Disconnected");
-        
+
     })
 
-    socket.on("ai-message", async (data)=>{
+    socket.on("ai-message", async (data) => {
 
-        console.log("Recived prompt", data.prompt)
-      const response = await generateResponse(data.prompt)
-      console.log("Ai response :" ,  response);
+        console.log("Recived prompt", data)
 
-      socket.emit("ai-message-response", {response})
-      
+        chatHistory.push({
+            role:"user",
+            parts:[{text:data}]
+        });
+        const response = await generateResponse(chatHistory)
+   
+        chatHistory.push({
+            role:"model",
+            parts:[{text: response}]
+        })
+
+        socket.emit("ai-message-response",  response )
+
     })
 
-}); 
+});
 
-httpServer.listen(3000, ()=>{
+httpServer.listen(3000, () => {
     console.log("server is runing on port 3000")
 })
