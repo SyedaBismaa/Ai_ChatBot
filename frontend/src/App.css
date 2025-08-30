@@ -1,0 +1,112 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 420px;
+  margin: auto;
+  border-radius: 16px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0b141a;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+
+.chat-header {
+  background: #202c33;
+  color: #e9edef;
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #2f3b43;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 18px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #111b21;
+}
+
+.chat-message {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  word-break: break-word;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  position: relative;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.chat-message.user {
+  background: #005c4b; /* WhatsApp green */
+  color: #e9edef;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-message.bot {
+  background: #202c33;
+  color: #e9edef;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.message-time {
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 4px;
+  display: block;
+  text-align: right;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  background: #202c33;
+  border-top: 1px solid #2f3b43;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 24px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: #2a3942;
+  color: #e9edef;
+  margin-right: 10px;
+}
+
+.chat-input input::placeholder {
+  color: #8f9ca3;
+}
+
+.chat-input button {
+  padding: 0 20px;
+  border: none;
+  background: #005c4b;
+  color: #fff;
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  height: 42px;
+  transition: background 0.2s ease;
+}
+
+.chat-input button:hover {
+  background: #017561;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
